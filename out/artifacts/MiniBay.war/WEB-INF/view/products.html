@@ -17,12 +17,13 @@
 
 </head>
 <body>
-<div class="container">
-
-
-    <div th:include="fragment/header :: logo"></div>
-
-    <div th:include="fragment/header :: authenticate"></div>
+<div id="layout" class="pure-g">
+    <div th:include="fragment/sidebar :: logo" class="pure-u-1-4 sidebar"></div>
+    <div class="pure-u-3-4">
+        <div class="pure-g">
+            <div th:include="fragment/header :: top-menu" class="pure-u-1-2"></div>
+            <div th:include="fragment/header :: authenticate" class="pure-u-1-2"></div>
+        </div>
 
     <h1>Hello from Thymeleaf</h1>
     <p>This is the products template.</p>
@@ -48,20 +49,27 @@
         </fieldset>
     </form>
 
-    <div th:if="${products.size() > 0}">
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-            </tr>
-            <tr th:each="product : ${products}">
-                <td th:text="${product.title}">Shizzle</td>
-                <td th:text="${product.description}">Bizzle</td>
-            </tr>
-        </table>
-    </div>
-    <div th:unless="${products.size() > 0}">
-        <p>There are no products currently registered. Why don't you add one?</p>
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h2>Products</h2>
+
+            </div>
+        </div>
+        <div th:if="${products.size() > 0}">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.title}">Shizzle</td>
+                    <td th:text="${product.description}">Bizzle</td>
+                </tr>
+            </table>
+        </div>
+        <div th:unless="${products.size() > 0}">
+            <p>There are no products currently registered. Why don't you add one?</p>
+        </div>
     </div>
 </div>
 </body>

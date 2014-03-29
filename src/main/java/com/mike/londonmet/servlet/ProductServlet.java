@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * Created with IntelliJ IDEA.
  * User: mikeholmes
  */
-@WebServlet("/product")
+@WebServlet("/products")
 public class ProductServlet extends ThymeleafEnabledServlet {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 

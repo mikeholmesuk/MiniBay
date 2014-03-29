@@ -1,14 +1,110 @@
 body {
+    background-color: #F3F3E7;
+    margin:0;
 }
 
-.container {
-    margin: 0 auto;
-    max-width: 1200px;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Poiret-one, Arial, Verdana, sans-serif;
 }
+
+/* Font Includes */
+@font-face {
+    font-family: 'Poiret-one';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Poiret-one'), url(../font/Poiret-one.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Allan';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Allan'), url(../font/Allan.woff) format('woff');
+}
+
+#layout {
+    padding: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.sidebar {
+    top: 0;
+    bottom: 0;
+    background-color: #22748A;
+}
+
+.header {
+    margin: 12em 4em;
+}
+.header a {
+    text-decoration: no-underline;
+}
+
+.logo {
+    margin: 12em 4em;
+}
+
+.logo-link {
+    text-decoration: no-underline;
+}
+
+.minibay-menu {
+    background-color: #F3F3E7;
+    margin-top: 0.5em;
+    margin-right: 1em;
+}
+
+.pure-menu.pure-menu-open {
+    background-color: transparent;
+}
+
+/* Header Element Styling */
+h1 {
+    font-family: Allan, Arial, Helvetica, sans-serif;
+    font-size: 3em;
+}
+
+h2 {
+    margin: 0.5em 3em;
+}
+
+h3 {
+    margin: 0.5em 1em;
+}
+
+/* End of header styling */
+
+/* General element styling */
+p {
+    margin: 2em;
+    color: #242324;
+    font-family: Poiret-one, Arial, Verdana, sans-serif;
+}
+
+/* End of general element styling */
 
 .pull-right {
     float: right;
 }
 .pull-left {
     float: left;
+}
+
+.light-text {
+    color: #F3F3E7;
+}
+
+.dark-text {
+    color: #242324;
+}
+
+.lead-text {
+    font-weight: bold;
 }

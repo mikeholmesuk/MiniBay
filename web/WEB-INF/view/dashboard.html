@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>MiniBay | Bid On Stuff</title>
+
+    <!-- CSS Includes -->
+    <link rel="stylesheet" href="public/style/pure-min.css" />
+    <link rel="stylesheet" href="public/style/mini_bay.css" />
+    <link rel="stylesheet" href="public/style/elusive-webfont.css" />
+
+    <!-- Javascript includes -->
+    <script src="public/script/jquery-1.11.0.min.js"></script>
+    <script src="public/script/minibay.js"></script>
+
+</head>
+<body>
+<div id="layout" class="pure-g">
+    <div th:include="fragment/sidebar :: logo" class="pure-u-1-4 sidebar"></div>
+    <div class="pure-u-3-4">
+        <div class="pure-g">
+            <div th:include="fragment/header :: top-menu" class="pure-u-1-2"></div>
+            <div th:include="fragment/header :: authenticate" class="pure-u-1-2"></div>
+        </div>
+
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h2>My Dashboard</h2>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

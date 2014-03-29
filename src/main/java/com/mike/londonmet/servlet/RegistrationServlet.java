@@ -13,19 +13,20 @@ import java.util.logging.Logger;
  * Created with IntelliJ IDEA.
  * User: mikeholmes
  */
-@WebServlet("")
-public class HomeServlet extends ThymeleafEnabledServlet {
+@WebServlet("/registration")
+public class RegistrationServlet extends ThymeleafEnabledServlet {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
-	public void init() {}
+	public void init() {
+	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-		logger.info("Requesting Home page");
+			throws ServletException, IOException {
+		logger.info("Requesting Registration page");
 
 		WebContext context = new WebContext(request, response, this.getServletContext());
 
-		logger.info("Rendering Home page");
-		thymeleaf.process("home", context, response.getWriter());
+		logger.info("Rendering Registration page");
+		thymeleaf.process("registration", context, response.getWriter());
 	}
 }
