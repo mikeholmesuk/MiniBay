@@ -41,8 +41,11 @@ public class Product {
 	private Timestamp updatedOn;
 
 	// Custom attributes
-	@OneToMany
-	private List<CustomAttribute> customAttributes;
+	//@OneToMany
+	//private List<CustomAttribute> customAttributes;
+
+	@ManyToOne
+	private User user;
 
 	public Product() {
 		// Empty constructor
@@ -77,13 +80,13 @@ public class Product {
 		this.description = description;
 	}
 
-	public List<CustomAttribute> getCustomAttributes() {
-		return customAttributes;
-	}
+	//public List<CustomAttribute> getCustomAttributes() {
+	//	return customAttributes;
+	//}
 
-	public void setCustomAttributes(List<CustomAttribute> customAttributes) {
-		this.customAttributes = customAttributes;
-	}
+	//public void setCustomAttributes(List<CustomAttribute> customAttributes) {
+	//	this.customAttributes = customAttributes;
+	//}
 
 	public Timestamp getCreatedOn() {
 		return createdOn;

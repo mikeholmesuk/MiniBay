@@ -1,3 +1,4 @@
 # Ignore compilation directory
 out/
 target/
+.idea/

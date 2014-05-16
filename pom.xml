@@ -15,6 +15,8 @@
         <validation.version>1.1.0.Final</validation.version>
         <hibernate.validator.version>5.1.0.CR1</hibernate.validator.version>
         <javax.el.version>2.2</javax.el.version>
+        <javax.ws.rs.version>1.1.1</javax.ws.rs.version>
+        <jboss.resteasy.version>3.0.6.Final</jboss.resteasy.version>
         <sun.el.ri.version>1.0</sun.el.ri.version>
         <jackson.version>1.9.13</jackson.version>
         <apache.common.version>3.2.1</apache.common.version>
@@ -112,6 +114,12 @@
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-lgpl</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <!-- REST JAX-RS -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>${jboss.resteasy.version}</version>
         </dependency>
 
         <!-- Testing Librarires -->

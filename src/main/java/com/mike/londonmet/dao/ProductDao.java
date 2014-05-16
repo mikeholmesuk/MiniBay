@@ -42,7 +42,7 @@ public class ProductDao {
 		entityManager.remove(product);
 	}
 
-	public List<Product> getProducts() {
+	public List<Product> getAllProducts() {
 		Query query = entityManager.createQuery("SELECT p from Product p");
 
 		List<Product> products = query.getResultList();
@@ -51,9 +51,22 @@ public class ProductDao {
 		return products;
 	}
 
+	public List<Product> getProductsByUser() {
+		//Query query = entityManager.createQuery("SELECT p from Product p WHERE p.user = :user");
+
+		return null;
+	}
+
 	public Product getProduct() {
 		Query query = entityManager.createQuery("SELECT p from Product p");
 		return (Product) query.getSingleResult();
+	}
+
+	public Long getProductsCount() {
+		Query query = entityManager.createQuery("SELECT COUNT(p) FROM Product p");
+		Long count = (Long) query.getSingleResult();
+		logger.info("Count of " + count);
+		return count;
 	}
 
 	public Product findProductById(Long id) {

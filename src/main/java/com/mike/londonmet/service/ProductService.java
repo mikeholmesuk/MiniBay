@@ -25,7 +25,15 @@ public class ProductService {
 
 	public List<Product> getAllProducts() {
 		logger.log(Level.FINE, "Retrieving all products");
-		return productDao.getProducts();
+		return productDao.getAllProducts();
+	}
+
+	public Product getProduct(Product product) {
+		return new Product();
+	}
+
+	public Long getsProductsCount() {
+		return productDao.getProductsCount();
 	}
 
 	public boolean addNewProduct(Product product) {

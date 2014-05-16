@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * Created with IntelliJ IDEA.
  * User: mikeholmes
  */
-@WebServlet("/products")
+@WebServlet("/product")
 public class ProductServlet extends ThymeleafEnabledServlet {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -45,7 +45,6 @@ public class ProductServlet extends ThymeleafEnabledServlet {
 
 		logger.info("Rendering page");
 		thymeleaf.process("products", context, response.getWriter());
-
 	}
 
 	// Handle POST requests
