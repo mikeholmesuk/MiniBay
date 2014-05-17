@@ -1,7 +1,10 @@
 $(function() {
     console.info("Document is ready");
 
-    $("#login-user-button").on("click touchstart", function() {
+    $("#login-user-button").on("click touchstart", login);
+    $("#logout-user-button").on("click touchstart", logout);
+
+    function login() {
         console.info("In authenticate user onClick handler");
 
         var auth = {
@@ -19,15 +22,16 @@ $(function() {
             data: JSON.stringify(auth)
         }).done(function(msg) {
             console.info("Successfully authenticated.");
-            console.info((JSON.stringify(msg)));
+            $(".auth-block").html(Mustache.to_html(logged_in_template, msg.body));
+            $("#logout-user-button").on("click touchstart", logout);
             $('#login-modal').foundation('reveal', 'close');
         }).fail(function(msg) {
             console.info("Error caught when authenticating");
             console.info(JSON.stringify(msg));
         });
-    });
+    }
 
-    $("#logout-user-button").on("click touchstart", function() {
+    function logout() {
         console.info("In logout user onClick handler");
 
         $.ajax({
@@ -38,8 +42,12 @@ $(function() {
         }).done(function() {
             console.info("Succesfully logged out");
             // Change template here?
-        })
-    });
+            $(".auth-block").html(Mustache.to_html(logged_out_template));
+            $("#login-user-button").on("click touchstart", login);
+        }).fail(function(msg) {
+            console.error("Error caught when logging out " + msg);
+        });
+    }
 
     $("#register-user-button").on("click touchstart", function() {
         console.info('In register user onclick handler');
@@ -65,12 +73,19 @@ $(function() {
             data: JSON.stringify(user)
         }).done(function(msg) {
             console.info('Success: ' + msg.status);
-            console.info(JSON.stringify(msg));
         }).fail(function(msg) {
             console.error("Error caught when registering customer");
         });
     });
 
+    $("#add-product-button").on("click touchstart", function() {
+        console.info("In add Product click handler");
+
+
+    });
+
+
+    /* Still needed? */
     $("#product-button").on("click touchstart", function() {
         console.info("In on click handler");
 
@@ -136,3 +151,8 @@ $(function() {
         })
     });
 });
+
+
+/* Moustache templates */
+logged_in_template = "<div class='medium-4 columns right'><a href='#' class='button small radius right' id='logout-user-button'><span class='icon el-icon-user'></span> Log out</a><p id='welcome'>Welcome {{user_details.firstname}}</p>";
+logged_out_template = "<div class='medium-4 columns right'><a href='#' data-reveal-id='login-modal' class='button small radius right'><span class='icon el-icon-user'></span> Log In</a></div>";

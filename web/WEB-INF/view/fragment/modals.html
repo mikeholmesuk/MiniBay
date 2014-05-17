@@ -10,21 +10,54 @@
             <fieldset>
                 <legend>Login</legend>
                 <div class="row">
-                    <div class="medium-6 columns">
+                    <div class="medium-12 columns">
                         <label>
-                            Username:
-                            <input type="text" id="auth-username-input" placeholder="Amazeballs123" />
-                        </label>
-                    </div>
-                    <div class="medium-6 columns">
-                        <label>
-                            Password:
-                            <input type="password" id="auth-password-input" placeholder="super secret..." />
+                            Product Title
+                            <input type="text" id="prod-title-input" placeholder="My great product" />
                         </label>
                     </div>
                 </div>
                 <div class="row">
-                    <a href="#" id="authenticate-user-button" class="button small radius right">Log me in!</a>
+                    <div class="medium-12 columns">
+                        <label>
+                            Short Description:
+                            <textarea id="short-desc-input" placeholder="Write your short description here" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <label>
+                            Long Description:
+                            <textarea id="long-desc-input" placeholder="Write your longer description here" />
+                        </label>
+                    </div>
+                </div>
+                // Slider
+
+
+
+                <div class="row">
+                    <a href="#" id="login-user-button" class="button small radius right">Log me in!</a>
+                </div>
+                <a class="close-reveal-modal">&#215;</a>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div th:fragment="add-product">
+    <div id="add-product-modal" class="reveal-modal small" data-reveal=''>
+        <h3>Add Product</h3>
+        <form>
+            <fieldset>
+                <legend>Add Product</legend>
+                <div class="row">
+
+                </div>
+
+                <div class="row">
+                    <a href="#" id="add-product-button" class="button small radius right">Sell This Now!</a>
                 </div>
                 <a class="close-reveal-modal">&#215;</a>
             </fieldset>

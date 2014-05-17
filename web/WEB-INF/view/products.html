@@ -22,10 +22,17 @@
     </div>
 
     <div class="row">
-        <h1 class="mid-blue">Products Page</h1>
+        <h2 class="mid-blue">Products Page</h2>
         <p>Take a look at the products currently up for grabs. Take a cheeky long-shot or grab yourself a bargain it can all eb yours from here.
         Alternatively why not add your own product to sell it on?</p>
     </div>
+    <div th:if="${session.user}" class="row">
+        <div class="center medium-12 columns">
+            <a href="#" class="button small radius" data-reveal-id="add-product-modal">Flog an item now!</a>
+        </div>
+        <div th:include="fragment/modals :: add-product"></div>
+    </div>
+
 
     <div class="row">
         <h2 class="mid-blue">Products</h2>
@@ -39,6 +46,8 @@
                         <img src="http://placehold.it/150x150" />
                         <h3 th:text="${product.title}">Title goes here</h3>
                         <p th:text="${product.shortDescription}">Description goes here</p>
+                        <!-- Buttons and time left etc -->
+                        <a href="#" class="button tiny radius right white"><span class="el-icon-search"></span> View Details</a>
                     </div>
                 </div>
             </div>
@@ -50,6 +59,7 @@
     </div>
     <script src="public/js/jquery-1.11.0.min.js"></script>
     <script src="public/js/foundation.min.js"></script>
+    <script src="public/js/mustache.js"></script>
     <script src="public/js/minibay.js"></script>
     <script>
         console.log('Loading foundation');

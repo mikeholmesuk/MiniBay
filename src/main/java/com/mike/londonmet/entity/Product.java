@@ -1,6 +1,7 @@
 package com.mike.londonmet.entity;
 
 import com.mike.londonmet.entity.listener.ProductListener;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
@@ -28,14 +29,22 @@ public class Product {
 
 	@NotNull(message = "Description cannot be null")
 	@Size(min = 5, max = 4096, message = "Description should be between 5 & 4096 characters in length")
+	@JsonProperty("short_description")
 	private String shortDescription;
 
 	@NotNull(message = "Description cannot be null")
 	@Size(min = 5, max = 4096, message = "Description should be between 5 & 4096 characters in length")
+	@JsonProperty("long_description")
 	private String longDescription;
 
 	@NotBlank
 	private String imageUrl;
+
+	@NotNull
+	@JsonProperty("starting_price")
+	private Double startingPrice;
+
+	private DateTime auctionEndTime;
 
 	// Audit properties
 	@NotNull
@@ -133,5 +142,21 @@ public class Product {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public Double getStartingPrice() {
+		return startingPrice;
+	}
+
+	public void setStartingPrice(Double startingPrice) {
+		this.startingPrice = startingPrice;
+	}
+
+	public DateTime getAuctionEndTime() {
+		return auctionEndTime;
+	}
+
+	public void setAuctionEndTime(DateTime auctionEndTime) {
+		this.auctionEndTime = auctionEndTime;
 	}
 }

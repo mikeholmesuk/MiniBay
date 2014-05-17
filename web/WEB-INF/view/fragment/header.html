@@ -8,6 +8,7 @@
         <div th:include="fragment/header :: logo"></div>
         <div class="top-menu" th:include="fragment/header :: top-menu"></div>
         <div class="auth-block" th:include="fragment/header :: authenticate"></div>
+        <div th:include="fragment/modals :: login"></div>
     </div>
 </div>
 
@@ -32,14 +33,13 @@
 <div th:fragment="authenticate">
     <div th:if="${session.user}" class="medium-4 columns pull-right">
         <!-- Log-out button -->
-        <a href="#" class="button small radius right"><span class="icon el-icon-user"></span> Log Out</a>
+        <a href="#" class="button small radius right" id="logout-user-button"><span class="icon el-icon-user"></span> Log Out</a>
         <p class="" id="welcome">Welcome <span th:text="${session.user.userDetails.firstname}">User</span></p>
     </div>
     <div th:unless="${session.user}" class="medium-4 columns pull-right">
         <!-- Authenticate button (w/ Modal panel)-->
-        <a href="#" data-reveal-id="login-modal" class="button small radius right"><span class="icon el-icon-user"></span> Log In</a>
+        <a href="#" data-reveal-id="login-modal" class="button small radius white right"><span class="icon el-icon-user"></span> Log In</a>
     </div>
-    <div th:include="fragment/modals :: login"></div>
 </div>
 
 </body>

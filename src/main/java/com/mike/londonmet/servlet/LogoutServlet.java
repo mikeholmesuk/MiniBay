@@ -1,5 +1,8 @@
 package com.mike.londonmet.servlet;
 
+import com.mike.londonmet.dto.ClientResponse;
+import com.mike.londonmet.dto.Status;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
@@ -30,9 +33,12 @@ public class LogoutServlet extends ThymeleafEnabledServlet {
 		}
 
 		WebContext context = new WebContext(request, response, this.getServletContext());
+		ObjectMapper mapper = new ObjectMapper();
+		ClientResponse json = new ClientResponse();
+		json.setStatus(Status.SUCCESS);
+		json.setMessage("You have successfully logged out");
 
-		logger.info("Rendering Home page");
-		thymeleaf.process("home", context, response.getWriter());
+		mapper.writeValue(response.getOutputStream(), json);
 	}
 }
 
