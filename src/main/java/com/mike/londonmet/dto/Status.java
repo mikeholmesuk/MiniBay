@@ -1,4 +1,4 @@
-package com.mike.londonmet.message;
+package com.mike.londonmet.dto;
 
 /**
  * Created with IntelliJ IDEA.

@@ -5,31 +5,90 @@
     <title>MiniBay | Bid On Stuff</title>
 
     <!-- CSS Includes -->
-    <link rel="stylesheet" href="public/style/pure-min.css" />
-    <link rel="stylesheet" href="public/style/mini_bay.css" />
-    <link rel="stylesheet" href="public/style/elusive-webfont.css" />
+    <!--<link rel="stylesheet" href="public/style/pure-min.css" /> -->
+    <link rel="stylesheet" href="public/css/normalize.css" />
+    <link rel="stylesheet" href="public/css/foundation.min.css" />
+    <link rel="stylesheet" href="public/css/mini_bay.css" />
+    <link rel="stylesheet" href="public/css/elusive-webfont.css" />
 
-    <!-- Javascript includes -->
-    <script src="public/script/jquery-1.11.0.min.js"></script>
-    <script src="public/script/minibay.js"></script>
+    <!-- Early Javascript includes -->
+    <script src="public/js/vendor/modernizr.js"></script>
+
+    <script src="public/js/jquery-1.11.0.min.js"></script>
+    <script src="public/js/minibay.js"></script>
 
 </head>
 <body>
-<div id="layout" class="pure-g">
-    <div th:include="fragment/sidebar :: logo" class="pure-u-1-4 sidebar"></div>
-    <div class="pure-u-3-4">
-        <div class="pure-g">
-            <div th:include="fragment/header :: top-menu" class="pure-u-1-2"></div>
-            <div th:include="fragment/header :: authenticate" class="pure-u-1-2"></div>
-        </div>
+    <div class="header">
+        <div th:include="fragment/header :: header"></div>
+    </div>
 
-        <div class="pure-g">
-            <div class="pure-u-1">
-                <h2>New User Registration</h2>
-
-            </div>
+    <div class="row">
+        <div class="medium-12 columns">
+            <h2>Register New User</h2>
+            <p>You need an account to bid for and sell items. As a memeber you'll be able to take advantage of the following benefits:</p>
+            <ul>
+                <li>Get emailed about stuff you don't want</li>
+                <li>Receive updates about stuff you can't afford</li>
+                <li>We'll sell your information so you'll be hounded relentlessly by other people trying to sell you stuff you don't want</li>
+            </ul>
+            <p></p>
+            <!-- Set up an account to do loads of shizzle -->
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <!-- Form goes here -->
+        <form>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Username:
+                        <input type="text" id="username-input" placeholder="madmick123" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <label>Password:
+                        <input type="text" id="password-input" placeholder="password" />
+                    </label>
+                </div>
+                <div class="medium-6 columns">
+                    <label>Retype password:
+                        <input type="text" placeholder="password again" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-6 columns">
+                    <label>Firstname:
+                        <input type="text" id="firstname-input" placeholder="Joe" />
+                    </label>
+                </div>
+                <div class="medium-6 columns">
+                    <label>Lastname:
+                        <input type="text" id="lastname-input" placeholder="Bloggs" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Email:
+                        <input type="text" id="email-input" placeholder="me@example.com" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Biography:
+                        <textarea id="bio-input" placeholder="a little bit about yourself" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <a href="#" id="register-user-button" class="button small radius right">Sign me up</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

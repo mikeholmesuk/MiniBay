@@ -1,7 +1,9 @@
 package com.mike.londonmet.entity;
 
+import com.mike.londonmet.entity.listener.UserListener;
 import com.sun.istack.internal.NotNull;
-import org.hibernate.validator.constraints.Email;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 
@@ -15,48 +17,41 @@ import java.util.logging.Logger;
  * User: mikeholmes
  */
 @Entity
+@EntityListeners(UserListener.class)
 public class User {
 	@Transient
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
 	// Properties
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@NotNull
-	@Size(min = 2, max = 100, message = "First name must be between 2 & 100 characters in length")
-	@Column(name="first_name")
-	private String firstname;
-	@NotNull
-	@Size(min = 2, max = 100, message = "Last name must be between 2 & 100 characters in length")
-	@Column(name="last_name")
-	private String lastname;
+	@NotBlank
+	@Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters in length")
+	@Column(name = "username")
+	private String username;
 
 	@NotNull
-	@NotBlank(message = "User email cannot be blank")
-	@Email(message = "User must have a valid email")
-	private String email;
-	@NotNull
 	@NotBlank
-	@Max(value = 200, message = "User password must be less than 200 characters in length")
+	@Size(min = 5, max = 200, message = "User password must be less than 200 characters in length")
 	private String password;
 
 	// Audit properties
 	@Column(name="created_on")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime createdOn;
 	@Column(name="updated_on")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime updatedOn;
 
-	// Relationships (1:n - product)
+	// Relationships (1:1 - UserDetails, 1:n - product)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonProperty("user_details")
+	private UserDetails userDetails;
 
 	public User() {}
-	public User(String firstname, String lastname, String email, String password) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.password = password;
-	}
 
 	public Long getId() {
 		return id;
@@ -66,28 +61,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String uername) {
+		this.username = uername;
 	}
 
 	public String getPassword() {
@@ -98,8 +77,32 @@ public class User {
 		this.password = password;
 	}
 
+	public DateTime getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(DateTime createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public DateTime getUpdatedOn() {
+		return updatedOn;
+	}
+
+	public void setUpdatedOn(DateTime updatedOn) {
+		this.updatedOn = updatedOn;
+	}
+
+	public UserDetails getUserDetails() {
+		return userDetails;
+	}
+
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
+	}
+
 	@Override
 	public String toString() {
-		return "User: " + this.getFirstname() + ", " + this.getLastname();
+		return "User: " + this.getUsername() + " - " + this.getUserDetails().toString();
 	}
 }

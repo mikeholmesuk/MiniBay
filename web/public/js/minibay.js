@@ -1,6 +1,38 @@
 $(function() {
     console.info("Document is ready");
 
+    $("#register-user-button").on("click touchstart", function() {
+        console.info('In register user onclick handler');
+
+        var user = {
+            username : $('#username-input').val(),
+            password : $('#password-input').val(),
+            user_details: {
+                firstname: $('#firstname-input').val(),
+                lastname: $('#lastname-input').val(),
+                email: $('#email-input').val(),
+                bio: $('#bio-input').val()
+            }
+        };
+
+        console.log("Object: " + JSON.stringify(user));
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            url: "./rest/registration",
+            data: JSON.stringify(user)
+        }).done(function(msg) {
+            console.info('Success: ' + msg.status);
+            console.info(msg);
+            console.info(JSON.stringify(msg));
+        }).fail(function(msg) {
+            console.error("Error caught when registering customer");
+            console.error(msg);
+        });
+    });
+
     $("#product-button").on("click touchstart", function() {
         console.info("In on click handler");
 

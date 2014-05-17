@@ -1,4 +1,6 @@
-package com.mike.londonmet.message;
+package com.mike.londonmet.dto;
+
+import org.joda.time.DateTime;
 
 import java.util.Date;
 
@@ -6,10 +8,10 @@ import java.util.Date;
  * Created with IntelliJ IDEA.
  * User: mikeholmes
  */
-public class ClientJsonResponse {
+public class ClientResponse {
 	private Status status;
-	private String body;
-	private Date responseTime;
+	private Object body;
+	private DateTime responseTime;
 
 	public Status getStatus() {
 		return status;
@@ -19,19 +21,19 @@ public class ClientJsonResponse {
 		this.status = status;
 	}
 
-	public String getBody() {
+	public Object getBody() {
 		return body;
 	}
 
-	public void setBody(String body) {
+	public void setBody(Object body) {
 		this.body = body;
 	}
 
-	public Date getResponseTime() {
+	public DateTime getResponseTime() {
 		return responseTime;
 	}
 
-	public void setResponseTime(Date responseTime) {
+	public void setResponseTime(DateTime responseTime) {
 		this.responseTime = responseTime;
 	}
 }

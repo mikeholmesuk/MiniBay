@@ -7,21 +7,25 @@
     <title>MiniBay | Bid On Stuff</title>
 
     <!-- CSS Includes -->
-    <link rel="stylesheet" href="public/style/pure-min.css" />
-    <link rel="stylesheet" href="public/style/mini_bay.css" />
-    <link rel="stylesheet" href="public/style/elusive-webfont.css" />
+    <!--<link rel="stylesheet" href="public/style/pure-min.css" /> -->
+    <link rel="stylesheet" href="public/css/normalize.css" />
+    <link rel="stylesheet" href="public/css/foundation.min.css" />
+    <link rel="stylesheet" href="public/css/mini_bay.css" />
+    <link rel="stylesheet" href="public/css/elusive-webfont.css" />
 
-    <!-- Javascript includes -->
-    <script src="public/script/jquery-1.11.0.min.js"></script>
-    <script src="public/script/minibay.js"></script>
+    <!-- Early Javascript includes -->
+    <script src="public/js/vendor/modernizr.js"></script>
+
+    <script src="public/js/jquery-1.11.0.min.js"></script>
+    <script src="public/js/minibay.js"></script>
 
 </head>
 <body>
-
     <div class="header">
         <div th:include="fragment/header :: header"></div>
     </div>
-    <div th:include="fragment/sidebar :: logo" class="pure-u-1-4 sidebar"></div>
+
+
     <div class="pure-u-3-4">
         <div class="pure-g">
             <div th:include="fragment/header :: top-menu" class="pure-u-1-2"></div>

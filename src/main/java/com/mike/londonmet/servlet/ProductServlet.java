@@ -1,10 +1,11 @@
 package com.mike.londonmet.servlet;
 
+import com.mike.londonmet.dto.ClientResponse;
 import com.mike.londonmet.entity.Product;
-import com.mike.londonmet.message.ClientJsonResponse;
-import com.mike.londonmet.message.Status;
+import com.mike.londonmet.dto.Status;
 import com.mike.londonmet.service.ProductService;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.joda.time.DateTime;
 import org.thymeleaf.context.WebContext;
 
 import javax.inject.Inject;
@@ -78,10 +79,10 @@ public class ProductServlet extends ThymeleafEnabledServlet {
 
 			productService.addNewProduct(product);
 
-			ClientJsonResponse json = new ClientJsonResponse();
+			ClientResponse json = new ClientResponse();
 			json.setStatus(Status.SUCCESS);
 			json.setBody(mapper.writeValueAsString(product));
-			json.setResponseTime(new Date());
+			json.setResponseTime(new DateTime());
 			mapper.writeValue(response.getOutputStream(), json);
 		}
 		catch (IOException ioe) {

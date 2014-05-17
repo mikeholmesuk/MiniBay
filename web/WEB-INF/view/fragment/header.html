@@ -8,35 +8,38 @@
 <div th:fragment="header">
     <div class="row">
         <div th:include="fragment/header :: logo"></div>
-        <div th:include="fragment/header :: top-menu"></div>
-        <div th:include="fragment/header :: authenticate"></div>
+        <div class="top-menu" th:include="fragment/header :: top-menu"></div>
+        <div class="auth-block" th:include="fragment/header :: authenticate"></div>
     </div>
 </div>
 
 <div th:fragment="logo">
     <div class="medium-4 columns">
-        <a href="/" class="drop-shadow"><h1><span class="el-icon-shopping-cart" /> MiniBay</h1></a>
+        <a href="./" class="drop-shadow"><h1><span class="el-icon-shopping-cart" /> MiniBay</h1></a>
         <h4 class="drop-shadow">Buy stuff you don't need at a price you can't afford</h4>
     </div>
 </div>
 
 <div th:fragment="top-menu">
-    <div class="medium-4 columns">
+    <div class="medium-4 columns top-menu">
         <ul>
-            <li class="pure-menu-selected"><a href="./">Home</a></li>
+            <li><a href="./">Home</a></li>
             <li><a href="./product">Products</a></li>
-            <li><a href="./categories">categories</a></li>
+            <li th:if="${user}"><a href="./user">Profile</a></li>
+            <li th:unless="${user}"><a href="./registration">Registration</a></li>
         </ul>
     </div>
 </div>
 
 <div th:fragment="authenticate">
-    <div class="medium-4 columns pull-right">
-        <ul>
-            <li th:if="${user}" class="pull-right"><a href="#"><span class="el-icon-dashboard"></span> My Dashboard</a></li>
-            <!-- Authenticate button -->
-            <li><a href="#" class="button small radius"><span class="el-icon-user"></span> Log In</a></li>
-        </ul>
+    <div th:if="${user}" class="medium-4 columns pull-right">
+        <p class="right" id="welcome">Welcome ${user.firstName}</p>
+        <!-- Log-out button -->
+        <a href="#" class="button small radius right"><span class="el-icon-user"></span> Log Out</a>
+    </div>
+    <div th:unless="${user}" class="medium-4 columns pull-right">
+        <!-- Authenticate button -->
+        <a href="#" class="button small radius right"><span class="el-icon-user"></span> Log In</a>
     </div>
 </div>
 
