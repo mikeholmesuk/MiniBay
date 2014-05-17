@@ -1,12 +1,13 @@
 package com.mike.londonmet.entity;
 
 import com.mike.londonmet.entity.listener.ProductListener;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,7 +28,11 @@ public class Product {
 
 	@NotNull(message = "Description cannot be null")
 	@Size(min = 5, max = 4096, message = "Description should be between 5 & 4096 characters in length")
-	private String description;
+	private String shortDescription;
+
+	@NotNull(message = "Description cannot be null")
+	@Size(min = 5, max = 4096, message = "Description should be between 5 & 4096 characters in length")
+	private String longDescription;
 
 	@NotBlank
 	private String imageUrl;
@@ -35,14 +40,16 @@ public class Product {
 	// Audit properties
 	@NotNull
 	@Column(name="created_on")
-	private Timestamp createdOn;
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime createdOn;
 
 	@Column(name="updated_on")
-	private Timestamp updatedOn;
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime updatedOn;
 
 	// Custom attributes
-	//@OneToMany
-	//private List<CustomAttribute> customAttributes;
+	@OneToMany
+	private List<CustomAttribute> customAttributes;
 
 	@ManyToOne
 	private User user;
@@ -53,7 +60,7 @@ public class Product {
 
 	public Product(String title, String description) {
 		this.title = title;
-		this.description = description;
+		this.longDescription = description;
 	}
 
 	public Long getId() {
@@ -72,35 +79,51 @@ public class Product {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getShortDescription() {
+		return shortDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
 	}
 
-	//public List<CustomAttribute> getCustomAttributes() {
-	//	return customAttributes;
-	//}
+	public List<CustomAttribute> getCustomAttributes() {
+		return customAttributes;
+	}
 
-	//public void setCustomAttributes(List<CustomAttribute> customAttributes) {
-	//	this.customAttributes = customAttributes;
-	//}
+	public void setCustomAttributes(List<CustomAttribute> customAttributes) {
+		this.customAttributes = customAttributes;
+	}
 
-	public Timestamp getCreatedOn() {
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String description) {
+		this.longDescription = description;
+	}
+
+	public DateTime getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Timestamp createdOn) {
+	public void setCreatedOn(DateTime createdOn) {
 		this.createdOn = createdOn;
 	}
 
-	public Timestamp getUpdatedOn() {
+	public DateTime getUpdatedOn() {
 		return updatedOn;
 	}
 
-	public void setUpdatedOn(Timestamp updatedOn) {
+	public void setUpdatedOn(DateTime updatedOn) {
 		this.updatedOn = updatedOn;
 	}
 

@@ -1,5 +1,4 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
@@ -16,72 +15,45 @@
     <!-- Early Javascript includes -->
     <script src="public/js/vendor/modernizr.js"></script>
 
-    <script src="public/js/jquery-1.11.0.min.js"></script>
-    <script src="public/js/minibay.js"></script>
-
 </head>
 <body>
     <div class="header">
         <div th:include="fragment/header :: header"></div>
     </div>
 
+    <div class="row">
+        <h1 class="mid-blue">Products Page</h1>
+        <p>Take a look at the products currently up for grabs. Take a cheeky long-shot or grab yourself a bargain it can all eb yours from here.
+        Alternatively why not add your own product to sell it on?</p>
+    </div>
 
-    <div class="pure-u-3-4">
-        <div class="pure-g">
-            <div th:include="fragment/header :: top-menu" class="pure-u-1-2"></div>
-            <div th:include="fragment/header :: authenticate" class="pure-u-1-2"></div>
-        </div>
+    <div class="row">
+        <h2 class="mid-blue">Products</h2>
+        <!-- Javascript includes here -->
 
-    <h1>Hello from Thymeleaf</h1>
-    <p>This is the products template.</p>
-
-
-    <!-- Javascript includes here -->
-
-    <form class="pure-form pure-form-aligned">
-        <fieldset>
-            <div class="pure-control-group">
-                <label for="title">Title</label>
-                <input id="title" type="text" placeholder="Title goes here..." />
-            </div>
-
-            <div class="pure-control-group">
-                <label for="description">Description</label>
-                <input id="description" type="text" placeholder="Description goes here..." />
-            </div>
-
-            <div>
-                <button type="button" class="pure-button pure-button-primary" id="product-button">Submit</button>
-            </div>
-        </fieldset>
-    </form>
-
-        <div class="pure-g">
-            <button type="button" class="pure-button pure-button-primary" id="product-count">Count</button>
-            <button type="button" class="pure-button pure-button-primary" id="all-products">All products</button>
-        </div>
-
-        <div class="pure-g">
-            <div class="pure-u-1">
-                <h2>Products</h2>
-
-            </div>
-        </div>
         <div th:if="${products.size() > 0}">
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                </tr>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.title}">Shizzle</td>
-                    <td th:text="${product.description}">Bizzle</td>
-                </tr>
-            </table>
+            <!-- Loop over products -->
+            <div th:each="product,iterStat : ${products}">
+                <div th:if="${iterStat.even}?" class="row browse-row">
+                    <div class="medium-6 columns product-overview">
+                        <img src="http://placehold.it/150x150" />
+                        <h3 th:text="${product.title}">Title goes here</h3>
+                        <p th:text="${product.shortDescription}">Description goes here</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div th:unless="${products.size() > 0}">
             <p>There are no products currently registered. Why don't you add one?</p>
+            <p></p>
         </div>
     </div>
+    <script src="public/js/jquery-1.11.0.min.js"></script>
+    <script src="public/js/foundation.min.js"></script>
+    <script src="public/js/minibay.js"></script>
+    <script>
+        console.log('Loading foundation');
+        $(document).foundation();
+    </script>
 </body>
 </html>

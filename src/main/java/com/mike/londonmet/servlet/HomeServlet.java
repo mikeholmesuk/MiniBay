@@ -20,7 +20,7 @@ public class HomeServlet extends ThymeleafEnabledServlet {
 	public void init() {}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
+			throws ServletException, IOException {
 		logger.info("Requesting Home page");
 
 		WebContext context = new WebContext(request, response, this.getServletContext());

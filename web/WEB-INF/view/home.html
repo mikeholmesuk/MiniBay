@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
@@ -13,9 +14,6 @@
 
     <!-- Early Javascript includes -->
     <script src="public/js/vendor/modernizr.js"></script>
-
-    <script src="public/js/jquery-1.11.0.min.js"></script>
-    <script src="public/js/minibay.js"></script>
 
 </head>
 <body>
@@ -50,6 +48,12 @@
                     Some don't, become nothing. She starred in one of the ones that became nothing. </p>
             </div>
         </div>
-
+    <script src="public/js/jquery-1.11.0.min.js"></script>
+    <script src="public/js/foundation.min.js"></script>
+    <script src="public/js/minibay.js"></script>
+    <script>
+        console.log('Loading foundation');
+        $(document).foundation();
+    </script>
 </body>
 </html>

@@ -53,7 +53,7 @@ public class ProductTest {
 
 	@Test
 	public void newObject_HasNullDescriptionByDefault() {
-		assertNull(product.getDescription());
+		assertNull(product.getLongDescription());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class ProductTest {
 
 	@Test
 	public void settingNullDescription_FailsValidation_ReturnsOneViolation() {
-		product.setDescription(null);
+		product.setLongDescription(null);
 		violations = validator.validateProperty(product, "description");
 		assertEquals("Description cannot be null - should return 1 violation (null)", violations.size(), 1);
 	}
@@ -92,14 +92,14 @@ public class ProductTest {
 
 	@Test
 	public void settingDescriptionLengthOfFour_FailsValidation_ReturnsOneViolation() {
-		product.setDescription(RandomStringUtils.random(4, true, false));     // Length of one with letters, no numbers
+		product.setLongDescription(RandomStringUtils.random(4, true, false));     // Length of one with letters, no numbers
 		violations = validator.validateProperty(product, "description");
 		assertEquals("Title has minimum length of two - should return 1 violation (length)", violations.size(), 1);
 	}
 
 	@Test
 	public void settingDescriptionLengthOfMoreThan4096_FailsValidation_ReturnsOneViolation() {
-		product.setDescription(RandomStringUtils.random(4097, true, false));
+		product.setLongDescription(RandomStringUtils.random(4097, true, false));
 		violations = validator.validateProperty(product, "description");
 		assertEquals("Title has minimum length of two - should return 1 violation (length)", violations.size(), 1);
 	}

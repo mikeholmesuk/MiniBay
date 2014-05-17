@@ -45,14 +45,11 @@ public class UserDao {
 		return false;
 	}
 
-	//public User getUser(User user) {
-	//	Query query = entityManager.createQuery("SELECT u from User u WHERE u")
-	//}
-
-	public User getUserByUsernameAndPassword(User user) {
+	public User getUserByUsernameAndPassword(String username, String password) {
+		logger.info("Finding user by username: " + username);
 		Query query = entityManager.createQuery("SELECT OBJECT(user) FROM User user WHERE user.username = :username AND user.password = :password");
-		query.setParameter("username", user.getUsername());
-		query.setParameter("password", user.getPassword());
+		query.setParameter("username", username);
+		query.setParameter("password", password);
 
 		return (User) query.getSingleResult();
 	}

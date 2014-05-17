@@ -19,11 +19,11 @@ import java.util.logging.Logger;
 @Path("/products")
 //@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProductRestService {
+public class ProductWebService {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
 	@Inject
-	private ProductService prodService;
+	private com.mike.londonmet.service.ProductService prodService;
 
 	@GET
 	public List<Product> getAllProducts() {

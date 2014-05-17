@@ -27,8 +27,8 @@ public class UserService {
 		return Collections.emptyList();
 	}
 
-	public User getUser() {
-		return new User();
+	public User getUser(Long id) {
+		return userDao.getUserById(id);
 	}
 
 	public boolean createUser(User user) {
@@ -48,12 +48,13 @@ public class UserService {
 
 	}
 
-	public void deleteUser() {
+	public void deleteUser(Long id) {
 
 	}
 
-	public void findUserbyUsernameAndPassword(User user) {
-
+	public User findUserbyUsernameAndPassword(String username, String password) {
+		logger.info("Finding user with username " + username);
+		return userDao.getUserByUsernameAndPassword(username, password);
 	}
 
 	public boolean isUserValid(User user) {

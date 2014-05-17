@@ -1,6 +1,46 @@
 $(function() {
     console.info("Document is ready");
 
+    $("#login-user-button").on("click touchstart", function() {
+        console.info("In authenticate user onClick handler");
+
+        var auth = {
+            username : $('#auth-username-input').val(),
+            password : $('#auth-password-input').val()
+        };
+
+        console.log("Object " + JSON.stringify(auth));
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            url: "./login",
+            data: JSON.stringify(auth)
+        }).done(function(msg) {
+            console.info("Successfully authenticated.");
+            console.info((JSON.stringify(msg)));
+            $('#login-modal').foundation('reveal', 'close');
+        }).fail(function(msg) {
+            console.info("Error caught when authenticating");
+            console.info(JSON.stringify(msg));
+        });
+    });
+
+    $("#logout-user-button").on("click touchstart", function() {
+        console.info("In logout user onClick handler");
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            contentType: 'application/json',
+            url: "./logout"
+        }).done(function() {
+            console.info("Succesfully logged out");
+            // Change template here?
+        })
+    });
+
     $("#register-user-button").on("click touchstart", function() {
         console.info('In register user onclick handler');
 
@@ -25,11 +65,9 @@ $(function() {
             data: JSON.stringify(user)
         }).done(function(msg) {
             console.info('Success: ' + msg.status);
-            console.info(msg);
             console.info(JSON.stringify(msg));
         }).fail(function(msg) {
             console.error("Error caught when registering customer");
-            console.error(msg);
         });
     });
 

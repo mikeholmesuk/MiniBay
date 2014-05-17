@@ -23,9 +23,9 @@ public class ProductListener {
 		logger.info("In onProduct EntityListener");
 		if (product.getCreatedOn() == null) {
 			logger.info("Created on is null.");
-			product.setCreatedOn(new Timestamp(DateTimeUtils.currentTimeMillis()));
+			product.setCreatedOn(new DateTime());
 		}
-		product.setUpdatedOn(new Timestamp(DateTimeUtils.currentTimeMillis()));
+		product.setUpdatedOn(new DateTime());
 
 		// Temp for image url
 		product.setImageUrl("fake string");

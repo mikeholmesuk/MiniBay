@@ -10,8 +10,13 @@ import java.util.Date;
  */
 public class ClientResponse {
 	private Status status;
+	private String message;
 	private Object body;
 	private DateTime responseTime;
+
+	public ClientResponse() {
+		this.responseTime = new DateTime();
+	}
 
 	public Status getStatus() {
 		return status;
@@ -19,6 +24,14 @@ public class ClientResponse {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public Object getBody() {
